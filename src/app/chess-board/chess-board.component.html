@@ -1,1 +1,19 @@
-<p>chess-board works!</p>
+<div id="chessBoard">
+    <div *ngFor="let row of chessBoardRows">
+        <div class="chessBoardRow">
+            <div *ngFor="let cell of row">
+                <div class="{{cell.className}}">
+                    <div class="markingOfCell">
+                        <div class="number" *ngIf="row.indexOf(cell) === 0">
+                            {{cell.number}}
+                        </div>
+                        
+                        <div class="letter" *ngIf="chessBoardRows.indexOf(row) === 7">
+                            {{dataForSpecialRows.letters[row.indexOf(cell)]}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
