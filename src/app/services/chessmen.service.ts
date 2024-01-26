@@ -4,6 +4,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ChessmenService {
-
+  //{black: [...], white: [...]}
   constructor() {}
+
+  getOrderOfFigures(){
+    //[url, url, ...]
+  }
 }

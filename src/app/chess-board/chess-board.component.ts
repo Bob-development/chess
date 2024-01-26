@@ -10,8 +10,7 @@ export class ChessBoardComponent {
   public isCellBlack: boolean = false;
   public rowCounter: number = 1;
 
-  public dataForSpecialRows: any = {
-    numbers: [1, 2, 3, 4, 5, 6, 7, 8],
+  public dataForSpecialRow: any = {
     letters: ['A', 'B', 'C', 'D', 'E','F', 'G', 'H']
   }
 
