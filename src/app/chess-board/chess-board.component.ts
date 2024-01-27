@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
+import { ChessmenService } from '../services/chessmen.service';
 
 @Component({
   selector: 'app-chess-board',
   templateUrl: './chess-board.component.html',
   styleUrl: './chess-board.component.css'
 })
+
 export class ChessBoardComponent {
   public rowLength: number = 8;
   public isCellBlack: boolean = false;
-  public rowCounter: number = 1;
 
   public dataForSpecialRow: any = {
-    letters: ['A', 'B', 'C', 'D', 'E','F', 'G', 'H']
+    letters: ['A', 'B', 'C', 'D', 'E','F', 'G', 'H'],
+    numbers: [1, 2, 3, 4, 5, 6, 7, 8]
   }
 
   public chessBoardRows: any[] = [
@@ -30,7 +32,6 @@ export class ChessBoardComponent {
 
     for(let i = 0; i < this.rowLength; i++){
       const cell = {
-        number: this.rowCounter,
         className: `cell ${this.isCellBlack ? 'black' : 'white'}`
       };
 
@@ -38,7 +39,7 @@ export class ChessBoardComponent {
       
       if(i < 7){
         this.toogleCellClass();
-      } else this.rowCounter = this.rowCounter + 1;
+      }
     }
 
     return rowArray;
@@ -48,5 +49,7 @@ export class ChessBoardComponent {
     this.isCellBlack = !this.isCellBlack;
   }
 
-  constructor(){}
+  constructor(
+    public chessmenService: ChessmenService
+  ){}
 }

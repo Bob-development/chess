@@ -1,17 +1,30 @@
-<div id="chessBoard">
-    <div class="chessBoardRow" *ngFor="let row of chessBoardRows">
-        <div *ngFor="let cell of row">
-            <div class="{{cell.className}}">
-                <div class="markingOfCell">
-                    <div class="number" *ngIf="row.indexOf(cell) === 0">
-                        {{cell.number}}
-                    </div>
-                    
-                    <div class="letter" *ngIf="chessBoardRows.indexOf(row) === 7">
-                        {{dataForSpecialRow.letters[row.indexOf(cell)]}}
+<div class="chessBoard-wrapper">
+    
+    <div class="numbers">
+        <div class="number" *ngFor="let number of dataForSpecialRow.numbers">{{number}}</div>
+    </div>
+
+    <div id="chessBoard">
+        <div class="chessBoardRow" *ngFor="let row of chessBoardRows">
+            <div *ngFor="let cell of row">
+                <div class="{{cell.className}}">
+                    <div class="markingOfCell">
+                        <!-- <div class="number" *ngIf="row.indexOf(cell) === 0">
+                            {{cell.number}}
+                        </div> -->
+    
+                        <div class="chessPiece">H</div>
+                        
+                        <!-- <div class="letter" *ngIf="chessBoardRows.indexOf(row) === 7">
+                            {{dataForSpecialRow.letters[row.indexOf(cell)]}}
+                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<div class="letters">
+    <div class="letter" *ngFor="let letter of dataForSpecialRow.letters">{{letter}}</div>
 </div>
