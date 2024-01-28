@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
+import { chessPiecesBlack, chessPiecesWhite} from "../enums";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ChessmenService {
-  //{black: [...], white: [...]}
+
   constructor() {}
 
-  getOrderOfFigures(){
-    //[url, url, ...]    
+  getOrderOfBlackFigures(){
+    return [
+      //figures, append a have written in chess-board.html
+    ]
   }
 }

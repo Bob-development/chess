@@ -12,8 +12,8 @@
                         <!-- <div class="number" *ngIf="row.indexOf(cell) === 0">
                             {{cell.number}}
                         </div> -->
-    
-                        <div class="chessPiece">H</div>
+
+                        <div class="chessPiece" *ngIf="cell.indexOfCell < 12 && chessBoardRows.indexOf(row) < 2">{{chessmenService.getOrderOfBlackFigures()[cell.indexOfCell]}}</div>
                         
                         <!-- <div class="letter" *ngIf="chessBoardRows.indexOf(row) === 7">
                             {{dataForSpecialRow.letters[row.indexOf(cell)]}}

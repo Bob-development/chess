@@ -10,10 +10,11 @@ import { ChessmenService } from '../services/chessmen.service';
 export class ChessBoardComponent {
   public rowLength: number = 8;
   public isCellBlack: boolean = false;
+  public cellIDX: number = 0;
 
   public dataForSpecialRow: any = {
     letters: ['A', 'B', 'C', 'D', 'E','F', 'G', 'H'],
-    numbers: [1, 2, 3, 4, 5, 6, 7, 8]
+    numbers: [8, 7, 6, 5, 4, 3, 2, 1]
   }
 
   public chessBoardRows: any[] = [
@@ -32,17 +33,24 @@ export class ChessBoardComponent {
 
     for(let i = 0; i < this.rowLength; i++){
       const cell = {
+        indexOfCell: this.cellIDX,
         className: `cell ${this.isCellBlack ? 'black' : 'white'}`
-      };
+      };      
 
       rowArray.push(cell);
       
       if(i < 7){
         this.toogleCellClass();
       }
+
+      this.cellIDX += 1;
     }
 
     return rowArray;
+  }
+
+  public getIndexOfCell(){
+    return
   }
   
   public toogleCellClass(){
