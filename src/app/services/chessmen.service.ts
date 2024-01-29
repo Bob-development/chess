@@ -9,9 +9,55 @@ export class ChessmenService {
 
   constructor() {}
 
+  getPawnEvent(event: MouseEvent){
+    const target = event.target;
+
+    return (() => {
+      console.log(target);
+    })()
+  }
+
   getOrderOfBlackFigures(){
     return [
-      //figures, append a have written in chess-board.html
+      chessPiecesBlack.rookURL,
+      chessPiecesBlack.knightURL,
+      chessPiecesBlack.bishopURL,
+      chessPiecesBlack.queenURL,
+      chessPiecesBlack.kingURL,
+      chessPiecesBlack.bishopURL,
+      chessPiecesBlack.knightURL,
+      chessPiecesBlack.rookURL,
+      
+      chessPiecesBlack.pawnURL,
+      chessPiecesBlack.pawnURL,
+      chessPiecesBlack.pawnURL,
+      chessPiecesBlack.pawnURL,
+      chessPiecesBlack.pawnURL,
+      chessPiecesBlack.pawnURL,
+      chessPiecesBlack.pawnURL,
+      chessPiecesBlack.pawnURL
+    ]
+  }
+
+  getOrderOfWhiteFigures(){
+    return [
+      chessPiecesWhite.pawnURL,
+      chessPiecesWhite.pawnURL,
+      chessPiecesWhite.pawnURL,
+      chessPiecesWhite.pawnURL,
+      chessPiecesWhite.pawnURL,
+      chessPiecesWhite.pawnURL,
+      chessPiecesWhite.pawnURL,
+      chessPiecesWhite.pawnURL,
+
+      chessPiecesWhite.rookURL,
+      chessPiecesWhite.knightURL,
+      chessPiecesWhite.bishopURL,
+      chessPiecesWhite.queenURL,
+      chessPiecesWhite.kingURL,
+      chessPiecesWhite.bishopURL,
+      chessPiecesWhite.knightURL,
+      chessPiecesWhite.rookURL
     ]
   }
 }
