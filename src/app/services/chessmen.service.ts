@@ -1,17 +1,26 @@
 import { Injectable } from '@angular/core';
 import { chessPiecesBlack, chessPiecesWhite} from "../enums";
+import { MoveOfChessPiecesService } from "./move-of-chess-pieces.service";
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ChessmenService {
-  public chosenChessPiece: HTMLElement = null
+  public chosenChessPiece: HTMLElement = null;
+  // public chosenCell: HTMLElement = null;
 
-  constructor() {}
+  constructor(
+    public moveOfChessPiecesService: MoveOfChessPiecesService
+  ) {}
 
-  public asd(a: HTMLDivElement){
-    console.log(a);
+  public isEmptyCell(cell: any){
+    // console.log(this.chosenChessPiece.parentElement);
+    
+    if(cell.children.length === 0 && this.chosenChessPiece !== null){
+      this.chosenChessPiece.parentNode.removeChild(this.chosenChessPiece)
+      this.chosenChessPiece = null;
+    }
   }
 
   public getBlackChessPieceEvent(chessPiece: HTMLImageElement, cellIndex: number){
@@ -21,6 +30,9 @@ export class ChessmenService {
       switch (chessPiece.src) {
         case 'http://localhost:4200/assets/blackChessPiecesPng/black-pawn.png':
           console.log('pawn');
+          
+
+          this.moveOfChessPiecesService.getMoveOfblackPawn()
           break;
 
         case 'http://localhost:4200/assets/blackChessPiecesPng/black-rook.png':
@@ -49,6 +61,8 @@ export class ChessmenService {
       
     })()
   }
+
+  public moveOfBlackPawn(){}
 
   public getWhiteChessPieceEvent(chessPiece: HTMLImageElement){
     return (() => {
