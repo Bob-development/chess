@@ -48,10 +48,6 @@ export class ChessBoardComponent {
 
     return rowArray;
   }
-
-  public getIndexOfCell(){
-    return
-  }
   
   public toogleCellClass(){
     this.isCellBlack = !this.isCellBlack;
