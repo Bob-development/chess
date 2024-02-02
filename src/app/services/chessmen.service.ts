@@ -7,20 +7,26 @@ import { MoveOfChessPiecesService } from "./move-of-chess-pieces.service";
 })
 
 export class ChessmenService {
-  public chosenChessPiece: HTMLElement = null;
-  // public chosenCell: HTMLElement = null;
+  public chosenChessPiece: any = null;
+  public chosenCell: HTMLElement = null;
 
   constructor(
     public moveOfChessPiecesService: MoveOfChessPiecesService
   ) {}
 
-  public isEmptyCell(cell: any){
-    // console.log(this.chosenChessPiece.parentElement);
-    
-    if(cell.children.length === 0 && this.chosenChessPiece !== null){
-      this.chosenChessPiece.parentNode.removeChild(this.chosenChessPiece)
+  public deletingIfEmptyCell(cell: any){            
+    if(cell.children.length === 1 && this.chosenChessPiece !== null){
+      const cellNode = this.chosenChessPiece.parentElement.parentElement;
+      const chessWrapper = this.chosenChessPiece.parentElement;
+      
+      this.addChosenPieceToCell();
+      cellNode.removeChild(chessWrapper);
       this.chosenChessPiece = null;
-    }
+    }    
+  }
+
+  public addChosenPieceToCell(){
+    return true;
   }
 
   public getBlackChessPieceEvent(chessPiece: HTMLImageElement, cellIndex: number){
