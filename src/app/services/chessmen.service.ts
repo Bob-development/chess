@@ -8,25 +8,43 @@ import { MoveOfChessPiecesService } from "./move-of-chess-pieces.service";
 
 export class ChessmenService {
   public chosenChessPiece: any = null;
-  public chosenCell: HTMLElement = null;
+  public chosenCell: any = null;
+  public isEmptyCell: boolean = false;
+  public a: string;
 
   constructor(
     public moveOfChessPiecesService: MoveOfChessPiecesService
   ) {}
 
-  public deletingIfEmptyCell(cell: any){            
-    if(cell.children.length === 1 && this.chosenChessPiece !== null){
+  public deletingIfEmptyCell(cell: any){
+    this.chosenCell = cell;
+    console.log(this.chosenCell.indexOfCell);
+    
+
+    if(cell.children.length === 0 && this.chosenChessPiece !== null){
+      this.isEmptyCell = true;
+      this.chosenCell = cell;
+      
+
       const cellNode = this.chosenChessPiece.parentElement.parentElement;
       const chessWrapper = this.chosenChessPiece.parentElement;
       
-      this.addChosenPieceToCell();
       cellNode.removeChild(chessWrapper);
-      this.chosenChessPiece = null;
-    }    
+      
+
+    } else this.isEmptyCell = false;
+
+    // this.toogle();
   }
 
-  public addChosenPieceToCell(){
-    return true;
+  public toogle(){
+    const a = this.chosenChessPiece.src;
+    
+    this.isEmptyCell = false;
+    this.chosenChessPiece = null;
+    this.chosenCell = null;
+
+    return a;
   }
 
   public getBlackChessPieceEvent(chessPiece: HTMLImageElement, cellIndex: number){
@@ -68,7 +86,9 @@ export class ChessmenService {
     })()
   }
 
-  public moveOfBlackPawn(){}
+  public getIsEmptyCell(){
+    return this.isEmptyCell;
+  }
 
   public getWhiteChessPieceEvent(chessPiece: HTMLImageElement){
     return (() => {
