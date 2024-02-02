@@ -34,8 +34,8 @@ export class ChessBoardComponent {
     for(let i = 0; i < this.rowLength; i++){
       const cell = {
         indexOfCell: this.cellIDX,
-        className: `cell ${this.isCellBlack ? 'black' : 'white'}`
-      };      
+        className: `cell ${this.isCellBlack ? 'black' : 'white'}`,
+      };
 
       rowArray.push(cell);
       

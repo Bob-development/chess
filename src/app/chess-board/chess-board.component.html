@@ -8,22 +8,15 @@
         <div class="chessBoardRow" *ngFor="let row of chessBoardRows">
             <div *ngFor="let cell of row">
                 <div class="{{cell.className}}">
-                    <div class="markingOfCell">
-                        <!-- <div class="number" *ngIf="row.indexOf(cell) === 0">
-                            {{cell.number}}
-                        </div> -->
-
+                    <div #markingOfCell (click)="chessmenService.isEmptyCell(markingOfCell)" class="markingOfCell">
+                        
                         <div class="chessPieceWrapper" *ngIf="cell.indexOfCell < 16 && chessBoardRows.indexOf(row) < 2">
-                            <img (click)="chessmenService.getPawnEvent($event)" src="{{chessmenService.getOrderOfBlackFigures()[cell.indexOfCell]}}" alt="Sorry..." class="chessPiece" draggable="false">
+                            <img #blackChessPiece (click)="chessmenService.getBlackChessPieceEvent(blackChessPiece, cell)" src="{{chessmenService.getOrderOfBlackFigures()[cell.indexOfCell]}}" alt="Sorry..." class="blackChessPiece" draggable="false">
                         </div>
 
                         <div class="chessPieceWrapper" *ngIf="chessBoardRows.indexOf(row) > 5">
-                            <img src="{{chessmenService.getOrderOfWhiteFigures()[cell.indexOfCell - 48]}}" alt="Sorry..." class="chessPiece" draggable="false">
+                            <img #whiteChessPiece (click)="chessmenService.getWhiteChessPieceEvent(whiteChessPiece)" src="{{chessmenService.getOrderOfWhiteFigures()[cell.indexOfCell - 48]}}" alt="Sorry..." class="whiteChessPiece" draggable="false">
                         </div>
-                        
-                        <!-- <div class="letter" *ngIf="chessBoardRows.indexOf(row) === 7">
-                            {{dataForSpecialRow.letters[row.indexOf(cell)]}}
-                        </div> -->
                     </div>
                 </div>
             </div>

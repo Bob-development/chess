@@ -55,7 +55,7 @@
     align-items: center;
 }
 
-.chessPiece{
+.blackChessPiece, .whiteChessPiece, .chosenPiece{
     width: 100%;
     height: 100%;
     display: flex;
@@ -64,7 +64,7 @@
     font-size: 40px;
 }
 
-/* .chessPiece{
-    user-select: none;
-    pointer-events: none;
-} */
+.chosenPiece{
+    position: relative;
+    bottom: 15px;
+}
