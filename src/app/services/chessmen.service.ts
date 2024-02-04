@@ -7,44 +7,36 @@ import { MoveOfChessPiecesService } from "./move-of-chess-pieces.service";
 })
 
 export class ChessmenService {
+  private movedChessPiecesData: object[] = [];
   public chosenChessPiece: any = null;
-  public chosenCell: any = null;
-  public isEmptyCell: boolean = false;
-  public a: string;
 
   constructor(
     public moveOfChessPiecesService: MoveOfChessPiecesService
   ) {}
 
-  public deletingIfEmptyCell(cell: any){
-    this.chosenCell = cell;
-    console.log(this.chosenCell.indexOfCell);
-    
+  public getMovedChessPiecesData(){
+    return this.movedChessPiecesData;
+  }
 
+  private addDataAboutMovedChessPiece(data: object){
+    this.movedChessPiecesData.push(data);
+  }
+
+  public moveChessPieceToEmptyCell(cell: any, idx: number){    
     if(cell.children.length === 0 && this.chosenChessPiece !== null){
-      this.isEmptyCell = true;
-      this.chosenCell = cell;
-      
+      const movedChessPiece = {
+        movedChessPieceIndex: idx,
+        src: this.chosenChessPiece.src
+      };
+
+      this.addDataAboutMovedChessPiece(movedChessPiece);
 
       const cellNode = this.chosenChessPiece.parentElement.parentElement;
       const chessWrapper = this.chosenChessPiece.parentElement;
-      
       cellNode.removeChild(chessWrapper);
-      
-
-    } else this.isEmptyCell = false;
-
-    // this.toogle();
-  }
-
-  public toogle(){
-    const a = this.chosenChessPiece.src;
-    
-    this.isEmptyCell = false;
-    this.chosenChessPiece = null;
-    this.chosenCell = null;
-
-    return a;
+ 
+      this.chosenChessPiece = null;
+    } 
   }
 
   public getBlackChessPieceEvent(chessPiece: HTMLImageElement, cellIndex: number){
@@ -53,30 +45,30 @@ export class ChessmenService {
       
       switch (chessPiece.src) {
         case 'http://localhost:4200/assets/blackChessPiecesPng/black-pawn.png':
-          console.log('pawn');
+          console.log('black pawn');
           
 
           this.moveOfChessPiecesService.getMoveOfblackPawn()
           break;
 
         case 'http://localhost:4200/assets/blackChessPiecesPng/black-rook.png':
-          console.log('rook');
+          console.log('black rook');
           break;
 
         case 'http://localhost:4200/assets/blackChessPiecesPng/black-knight.png':
-          console.log('knight');
+          console.log('black knight');
           break;
 
         case 'http://localhost:4200/assets/blackChessPiecesPng/black-bishop.png':
-          console.log('bishop');
+          console.log('black bishop');
           break;
 
         case 'http://localhost:4200/assets/blackChessPiecesPng/black-queen.png':
-          console.log('queen');
+          console.log('black queen');
           break;
 
         case 'http://localhost:4200/assets/blackChessPiecesPng/black-king.png':
-          console.log('king');
+          console.log('black king');
           break;
       
         default:
@@ -86,13 +78,43 @@ export class ChessmenService {
     })()
   }
 
-  public getIsEmptyCell(){
-    return this.isEmptyCell;
-  }
-
   public getWhiteChessPieceEvent(chessPiece: HTMLImageElement){
     return (() => {
-      // chessPiece.parentElement.textContent = ''
+      this.chessPieceClassNameHandler(chessPiece);
+      
+      
+      switch (chessPiece.src) {
+        case 'http://localhost:4200/assets/whiteChessPiecesPng/white-pawn.png':
+          console.log('white pawn');
+          
+
+          this.moveOfChessPiecesService.getMoveOfblackPawn()
+          break;
+
+        case 'http://localhost:4200/assets/whiteChessPiecesPng/white-rook.png':
+          console.log('white rook');
+          break;
+
+        case 'http://localhost:4200/assets/whiteChessPiecesPng/white-knight.png':
+          console.log('white knight');
+          break;
+
+        case 'http://localhost:4200/assets/whiteChessPiecesPng/white-bishop.png':
+          console.log('white bishop');
+          break;
+
+        case 'http://localhost:4200/assets/whiteChessPiecesPng/white-queen.png':
+          console.log('white queen');
+          break;
+
+        case 'http://localhost:4200/assets/whiteChessPiecesPng/white-king.png':
+          console.log('white king');
+          break;
+      
+        default:
+          break;
+      }
+      
     })()
   }
 
