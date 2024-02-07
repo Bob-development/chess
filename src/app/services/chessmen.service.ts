@@ -36,7 +36,7 @@ export class ChessmenService {
       cellNode.removeChild(chessWrapper);
  
       this.chosenChessPiece = null;
-    } 
+    }
   }
 
   public getBlackChessPieceEvent(chessPiece: HTMLImageElement, cellIndex: number){
