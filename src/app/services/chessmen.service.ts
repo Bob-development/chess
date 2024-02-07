@@ -8,7 +8,7 @@ import { MoveOfChessPiecesService } from "./move-of-chess-pieces.service";
 
 export class ChessmenService {
   private movedChessPiecesData: object[] = [];
-  public chosenChessPiece: any = null;
+  public chosenChessPiece: HTMLImageElement = null;
 
   constructor(
     public moveOfChessPiecesService: MoveOfChessPiecesService
@@ -22,8 +22,16 @@ export class ChessmenService {
     this.movedChessPiecesData.push(data);
   }
 
-  public moveChessPieceToEmptyCell(cell: any, idx: number){    
-    if(cell.children.length === 0 && this.chosenChessPiece !== null){
+  public moveChessPieceToEmptyCell(cell: any, idx: number){
+    let firstCellChild: HTMLElement;
+    
+    cell.children.length !== 0 ? firstCellChild = cell.children[0] : null;    
+
+    //GET WAYS TO MOVE PIECE
+    this.moveOfChessPiecesService.getMoveOfChessPieces(this.chosenChessPiece, idx, cell);
+    
+    //CHECK IS EMPTY CELL
+    if(cell.children.length !== 0 && firstCellChild.className === 'way-to-move-piece' && this.chosenChessPiece !== null){
       const movedChessPiece = {
         movedChessPieceIndex: idx,
         src: this.chosenChessPiece.src
@@ -34,88 +42,11 @@ export class ChessmenService {
       const cellNode = this.chosenChessPiece.parentElement.parentElement;
       const chessWrapper = this.chosenChessPiece.parentElement;
       cellNode.removeChild(chessWrapper);
- 
+      
+      this.moveOfChessPiecesService.deleteDataFromArrIndexes();
+
       this.chosenChessPiece = null;
     } 
-  }
-
-  public getBlackChessPieceEvent(chessPiece: HTMLImageElement, cellIndex: number){
-    return (() => {
-      this.chessPieceClassNameHandler(chessPiece);
-      
-      switch (chessPiece.src) {
-        case 'http://localhost:4200/assets/blackChessPiecesPng/black-pawn.png':
-          console.log('black pawn');
-          
-
-          this.moveOfChessPiecesService.getMoveOfblackPawn()
-          break;
-
-        case 'http://localhost:4200/assets/blackChessPiecesPng/black-rook.png':
-          console.log('black rook');
-          break;
-
-        case 'http://localhost:4200/assets/blackChessPiecesPng/black-knight.png':
-          console.log('black knight');
-          break;
-
-        case 'http://localhost:4200/assets/blackChessPiecesPng/black-bishop.png':
-          console.log('black bishop');
-          break;
-
-        case 'http://localhost:4200/assets/blackChessPiecesPng/black-queen.png':
-          console.log('black queen');
-          break;
-
-        case 'http://localhost:4200/assets/blackChessPiecesPng/black-king.png':
-          console.log('black king');
-          break;
-      
-        default:
-          break;
-      }
-      
-    })()
-  }
-
-  public getWhiteChessPieceEvent(chessPiece: HTMLImageElement){
-    return (() => {
-      this.chessPieceClassNameHandler(chessPiece);
-      
-      
-      switch (chessPiece.src) {
-        case 'http://localhost:4200/assets/whiteChessPiecesPng/white-pawn.png':
-          console.log('white pawn');
-          
-
-          this.moveOfChessPiecesService.getMoveOfblackPawn()
-          break;
-
-        case 'http://localhost:4200/assets/whiteChessPiecesPng/white-rook.png':
-          console.log('white rook');
-          break;
-
-        case 'http://localhost:4200/assets/whiteChessPiecesPng/white-knight.png':
-          console.log('white knight');
-          break;
-
-        case 'http://localhost:4200/assets/whiteChessPiecesPng/white-bishop.png':
-          console.log('white bishop');
-          break;
-
-        case 'http://localhost:4200/assets/whiteChessPiecesPng/white-queen.png':
-          console.log('white queen');
-          break;
-
-        case 'http://localhost:4200/assets/whiteChessPiecesPng/white-king.png':
-          console.log('white king');
-          break;
-      
-        default:
-          break;
-      }
-      
-    })()
   }
 
   public chessPieceClassNameHandler(chessPiece: HTMLImageElement){
