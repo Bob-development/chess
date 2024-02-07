@@ -55,6 +55,10 @@
     align-items: center;
 }
 
+.chessPieceWrapper{
+    user-select: none;
+}
+
 .blackChessPiece, .whiteChessPiece, .chosenPiece, .movedPiece{
     width: 100%;
     height: 100%;
@@ -67,4 +71,15 @@
 .chosenPiece{
     position: relative;
     bottom: 15px;
+}
+
+.way-to-move-piece{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    user-select: none;
+    color: rgb(43, 43, 43);
 }

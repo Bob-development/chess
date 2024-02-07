@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ChessmenService } from '../services/chessmen.service';
+import { MoveOfChessPiecesService } from '../services/move-of-chess-pieces.service';
 
 @Component({
   selector: 'app-chess-board',
@@ -54,6 +55,7 @@ export class ChessBoardComponent {
   }
 
   constructor(
-    public chessmenService: ChessmenService
+    public chessmenService: ChessmenService,
+    public moveOfChessPiecesService: MoveOfChessPiecesService,
   ){}
 }
