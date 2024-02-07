@@ -8,7 +8,6 @@
         <div class="chessBoardRow" *ngFor="let row of chessBoardRows">
             <div *ngFor="let cell of row">
                 <div class="{{cell.className}}">
-                    <!-- use class markingCell for point  -->
                     <div #markingOfCell (click)="chessmenService.moveChessPieceToEmptyCell(markingOfCell, cell.indexOfCell)" class="markingOfCell">
 
                         <ng-container *ngFor="let index of moveOfChessPiecesService.getIndexesToMoveChessPiece()">
